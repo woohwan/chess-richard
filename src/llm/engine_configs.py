@@ -93,7 +93,7 @@ ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
         "constructor": ChatOpenAI,
         "params": {"model": "gpt-4o-mini", "temperature": 0}
     },
-    "claude-3-opus-20240229": {
+     "claude-3-opus-20240229": {
         "constructor": ChatAnthropic,
         "params": {"model": "claude-3-opus-20240229", "temperature": 0}
     },
@@ -157,6 +157,15 @@ ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
             "model_kwargs": {
                 "stop": [""]
             }
+        }
+    },
+     # vLLM 엔진 설정 수정
+    "vllm_local": {
+        "constructor": ChatOpenAI,
+        "params": {
+            "model_name": "llama-3-8b",  # 실제 모델 이름으로 변경
+            "openai_api_base": "http://localhost:8000/v1" # vLLM 서버의 주소와 포트
+            # temperature 파라미터를 완전히 제거
         }
     }
 }
