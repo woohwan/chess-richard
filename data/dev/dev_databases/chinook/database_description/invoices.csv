@@ -1,0 +1,10 @@
+﻿original_column_name,column_name,column_description,data_format,value_description
+InvoiceId,InvoiceId,Primary key.,INTEGER,
+CustomerId,CustomerId,Foreign key referencing 'customers' table on column 'CustomerId'.,INTEGER,
+InvoiceDate,InvoiceDate,,DATETIME,
+BillingAddress,BillingAddress,,NVARCHAR(70),
+BillingCity,BillingCity,,NVARCHAR(40),
+BillingState,BillingState,,NVARCHAR(40),
+BillingCountry,BillingCountry,,NVARCHAR(40),
+BillingPostalCode,BillingPostalCode,,NVARCHAR(10),
+Total,Total,,"NUMERIC(10,2)",

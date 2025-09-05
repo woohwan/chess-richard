@@ -1,0 +1,6 @@
+﻿original_column_name,column_name,column_description,data_format,value_description
+InvoiceLineId,InvoiceLineId,Primary key.,INTEGER,
+InvoiceId,InvoiceId,Foreign key referencing 'invoices' table on column 'InvoiceId'.,INTEGER,
+TrackId,TrackId,Foreign key referencing 'tracks' table on column 'TrackId'.,INTEGER,
+UnitPrice,UnitPrice,,"NUMERIC(10,2)",
+Quantity,Quantity,,INTEGER,

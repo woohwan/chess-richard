@@ -1,0 +1,10 @@
+﻿original_column_name,column_name,column_description,data_format,value_description
+TrackId,TrackId,Primary key.,INTEGER,
+Name,Name,,NVARCHAR(200),
+AlbumId,AlbumId,Foreign key referencing 'albums' table on column 'AlbumId'.,INTEGER,
+MediaTypeId,MediaTypeId,Foreign key referencing 'media_types' table on column 'MediaTypeId'.,INTEGER,
+GenreId,GenreId,Foreign key referencing 'genres' table on column 'GenreId'.,INTEGER,
+Composer,Composer,,NVARCHAR(220),
+Milliseconds,Milliseconds,,INTEGER,
+Bytes,Bytes,,INTEGER,
+UnitPrice,UnitPrice,,"NUMERIC(10,2)",

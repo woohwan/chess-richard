@@ -1,0 +1,24 @@
+[
+    {
+        "question_id": 0,
+        "db_id": "chinook",
+        "question": "캐나다에 거주하며 지원 담당자 ID가 1인 고객이 구매한 재즈 장르 음원의 첫번째 인보이스 주문들을 대상으로, 해당 인보이스들의 총 판매 금액 합계를 알려주세요.",
+        "SQL": "WITH JazzFiltered AS (\n    SELECT \n        i.InvoiceId,\n        i.Total,\n        ROW_NUMBER() OVER (PARTITION BY i.InvoiceId ORDER BY i.InvoiceDate) AS rn\n    FROM invoices i\n    INNER JOIN customers c ON i.CustomerId = c.CustomerId\n    INNER JOIN invoice_items ii ON i.InvoiceId = ii.InvoiceId\n    INNER JOIN tracks t ON ii.TrackId = t.TrackId\n    INNER JOIN genres g ON t.GenreId = g.GenreId\n    WHERE g.Name = 'Jazz'\n      AND c.Country = 'Canada'\n      AND c.SupportRepId = 1\n)\nSELECT COALESCE(SUM(Total), 0) AS TotalJazzSales\nFROM JazzFiltered\nWHERE rn = 1;",
+        "evidence": ""
+        
+    },
+    {
+        "question_id": 1,
+        "db_id": "chinook",
+        "SQL": "SELECT Title\nFROM albums\nWHERE Title LIKE '%Rock%';",
+        "question": "안녕! 앨범 테이블에서 제목에 \"Rock\"이라는 단어가 들어간 앨범들의 제목을 알려줄 수 있어?",
+        "evidence": ""
+    },
+    {
+        "question_id": 2,
+        "db_id": "chinook",
+        "question": "어떤 아티스트들이 존재하며, 각 아티스트가 보유한 Rock 장르 트랙 수는 얼마인가요?",
+        "SQL": "SELECT a.Name AS Artist, COUNT(t.TrackId) AS RockTrackCount\nFROM artists a\nINNER JOIN albums al ON a.ArtistId = al.ArtistId\nINNER JOIN tracks t ON al.AlbumId = t.AlbumId\nINNER JOIN genres g ON t.GenreId = g.GenreId\nWHERE g.Name = 'Rock'\nGROUP BY a.ArtistId\nHAVING COUNT(t.TrackId) > 0;",
+        "evidence": ""
+    }
+]

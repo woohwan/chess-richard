@@ -1,0 +1,4 @@
+﻿original_column_name,column_name,column_description,data_format,value_description
+AlbumId,AlbumId,Primary key.,INTEGER,
+Title,Title,,NVARCHAR(160),
+ArtistId,ArtistId,Foreign key referencing 'artists' table on column 'ArtistId'.,INTEGER,
