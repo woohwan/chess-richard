@@ -94,9 +94,12 @@ ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
         "params": {"model": "gpt-4o-mini", "temperature": 0}
     },
     ### ----------------------------------------------
-    "o4-mini": {
+    "o3-mini": {
         "constructor": ChatOpenAI,
-        "params": {"model": "o4-mini"}
+        "params": {
+            "model": "o3-mini",
+            "temperature": 1.0  # 값을 1.0으로 고정
+        }
     },
     ### -----------------------------------------------
      "claude-3-opus-20240229": {
