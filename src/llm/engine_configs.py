@@ -93,6 +93,12 @@ ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
         "constructor": ChatOpenAI,
         "params": {"model": "gpt-4o-mini", "temperature": 0}
     },
+    ### ----------------------------------------------
+    "o4-mini": {
+        "constructor": ChatOpenAI,
+        "params": {"model": "o4-mini"}
+    },
+    ### -----------------------------------------------
      "claude-3-opus-20240229": {
         "constructor": ChatAnthropic,
         "params": {"model": "claude-3-opus-20240229", "temperature": 0}

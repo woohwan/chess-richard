@@ -27,13 +27,28 @@ def get_llm_chain(engine_name: str, temperature: float = 0, base_uri: str = None
     
     config = ENGINE_CONFIGS[engine_name]
     constructor = config["constructor"]
-    params = config["params"]
-    if temperature:
-        params["temperature"] = temperature
     
+    # params 딕셔너리를 복사하여 원본을 변경하지 않도록 수정
+    params = config["params"].copy() 
+
+    # 특정 모델이 temperature를 지원하지 않을 경우, 인자를 전달하지 않도록 처리
+    if "temperature" in params:
+        # 설정에 temperature가 이미 존재하면, 함수 인자로 받은 값을 사용
+        params["temperature"] = temperature
+    # else: 설정에 temperature가 없으면 추가하지 않음 (o4-mini 같은 경우)
+
     # Adjust base_uri if provided
     if base_uri and "openai_api_base" in params:
         params["openai_api_base"] = f"{base_uri}/v1"
+    
+    
+    # params = config["params"]
+    # if temperature:
+    #     params["temperature"] = temperature
+    
+    # # Adjust base_uri if provided
+    # if base_uri and "openai_api_base" in params:
+    #     params["openai_api_base"] = f"{base_uri}/v1"
     
     model = constructor(**params)
     if "preprocess" in config:
